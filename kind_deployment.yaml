@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iweb-lens
+  labels:
+    app:  iweb-lens
+spec:
+  replicas: 1 #create a single pods first
+  selector:
+    matchLabels:
+      app:  iweb-lens
+  template:
+    metadata:
+      labels:
+        app:  iweb-lens
+    spec:
+      containers:
+      - name: iweb-lens
+        image:  iweb-lens:v1
+        ports:
+        - containerPort:  5000
+        imagePullPolicy:  IfNotPresent
+        resources:
+          limits:
+            cpu:  "0.5"
+          requests:
+            cpu:  "0.5"
